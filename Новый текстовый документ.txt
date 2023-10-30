@@ -1,0 +1,131 @@
+public class Phone {
+    private String number;
+    private String model;
+    private double weight;
+
+    // Конструктор с тремя параметрами
+    public Phone(String number, String model, double weight) {
+        this.number = number;
+        this.model = model;
+        this.weight = weight;
+    }
+
+    // Конструктор с двумя параметрами
+    public Phone(String number, String model) {
+        this.number = number;
+        this.model = model;
+        this.weight = 0.0;
+    }
+
+    // Конструктор без параметров
+    public Phone() {
+        this.number = "";
+        this.model = "";
+        this.weight = 0.0;
+    }
+
+    // Метод receiveCall
+    public void receiveCall(String callerName) {
+        System.out.println("Звонит " + callerName);
+    }
+
+    // Метод getNumber
+    public String getNumber() {
+        return number;
+    }
+
+    public static void main(String[] args) {
+        // Создание трех экземпляров класса Phone
+        Phone phone1 = new Phone("123456789", "iPhone X", 0.3);
+        Phone phone2 = new Phone("987654321", "Samsung Galaxy S10");
+        Phone phone3 = new Phone();
+
+        // Вывод значений переменных объектов
+        System.out.println("Phone 1: " + phone1.getNumber() + ", " + phone1.model + ", " + phone1.weight + "kg");
+        System.out.println("Phone 2: " + phone2.getNumber() + ", " + phone2.model + ", " + phone2.weight + "kg");
+        System.out.println("Phone 3: " + phone3.getNumber() + ", " + phone3.model + ", " + phone3.weight + "kg");
+
+        // Вызов метода receiveCall для каждого объекта
+        phone1.receiveCall("John");
+        phone2.receiveCall("Emma");
+        phone3.receiveCall("Alex");
+    }
+}
+
+
+
+Доработанный
+
+
+
+abstract class Phone {
+    private String number;
+    private String model;
+    private double weight;
+
+    public Phone(String number, String model, double weight) {
+        this.number = number;
+        this.model = model;
+        this.weight = weight;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    // Абстрактный метод info()
+    public abstract void info();
+}
+
+// Класс-наследник SamsungPhone
+class SamsungPhone extends Phone {
+    public SamsungPhone(String number, String model, double weight) {
+        super(number, model, weight);
+    }
+
+    // Реализация метода info() для SamsungPhone
+    @Override
+    public void info() {
+        System.out.println("Samsung Phone: " + getNumber() + ", " + super.model + ", " + super.weight + "kg");
+    }
+}
+
+// Класс-наследник XiaomiPhone
+class XiaomiPhone extends Phone {
+    public XiaomiPhone(String number, String model, double weight) {
+        super(number, model, weight);
+    }
+
+    // Реализация метода info() для XiaomiPhone
+    @Override
+    public void info() {
+        System.out.println("Xiaomi Phone: " + getNumber() + ", " + super.model + ", " + super.weight + "kg");
+    }
+}
+
+// Класс-наследник ApplePhone
+class ApplePhone extends Phone {
+    public ApplePhone(String number, String model, double weight) {
+        super(number, model, weight);
+    }
+
+    // Реализация метода info() для ApplePhone
+    @Override
+    public void info() {
+        System.out.println("Apple Phone: " + getNumber() + ", " + super.model + ", " + super.weight + "kg");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Создание объектов каждого класса-наследника
+        SamsungPhone samsungPhone = new SamsungPhone("123456789", "Samsung Galaxy S20", 0.4);
+        XiaomiPhone xiaomiPhone = new XiaomiPhone("987654321", "Xiaomi Mi 10", 0.3);
+        ApplePhone applePhone = new ApplePhone("111222333", "iPhone 11", 0.5);
+
+        // Вызов метода info() для каждого объекта
+        samsungPhone.info();
+        xiaomiPhone.info();
+        applePhone.info();
+    }
+}
